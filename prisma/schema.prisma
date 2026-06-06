@@ -1,0 +1,175 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+// ─── ENUMS ───────────────────────────────────────────────
+enum Role {
+  VISITOR
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum ArticleCategory {
+  LEADERSHIP
+  ENTREPRENEURIAT
+  FORMATION
+  CONSEIL
+  ACTUALITE
+  PUBLICATION
+}
+
+enum ResourceType {
+  PDF
+  VIDEO
+  PODCAST
+  RAPPORT
+  PLAQUETTE
+  GUIDE
+}
+
+enum OrgStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum MessageStatus {
+  UNREAD
+  READ
+  ARCHIVED
+}
+
+// ─── MODELS ──────────────────────────────────────────────
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(VISITOR)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles Article[]
+
+  @@map("users")
+}
+
+model Article {
+  id          String          @id @default(uuid())
+  title       String          @db.VarChar(255)
+  slug        String          @unique @db.VarChar(300)
+  excerpt     String?         @db.Text
+  content     String          @db.LongText
+  category    ArticleCategory
+  tags        String?         @db.Text
+  coverImage  String?         @db.VarChar(500)
+  isPublished Boolean         @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
+
+  @@map("articles")
+}
+
+model Resource {
+  id          String       @id @default(uuid())
+  title       String       @db.VarChar(255)
+  description String?      @db.Text
+  type        ResourceType
+  fileUrl     String       @db.VarChar(500)
+  isPremium   Boolean      @default(false)
+  downloads   Int          @default(0)
+  theme       String?      @db.VarChar(100)
+  language    String       @default("fr") @db.VarChar(10)
+  isPublished Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@map("resources")
+}
+
+model ContactMessage {
+  id        String        @id @default(uuid())
+  name      String        @db.VarChar(150)
+  email     String        @db.VarChar(255)
+  subject   String        @db.VarChar(255)
+  message   String        @db.Text
+  status    MessageStatus @default(UNREAD)
+  sentAt    DateTime      @default(now())
+  readAt    DateTime?
+
+  @@map("contact_messages")
+}
+
+model NewsletterSubscriber {
+  id           String   @id @default(uuid())
+  email        String   @unique @db.VarChar(255)
+  isActive     Boolean  @default(false)
+  token        String?  @db.VarChar(500)
+  subscribedAt DateTime @default(now())
+  confirmedAt  DateTime?
+  unsubscribedAt DateTime?
+
+  @@map("newsletter_subscribers")
+}
+
+model Organization {
+  id          String    @id @default(uuid())
+  name        String    @db.VarChar(255)
+  description String?   @db.Text
+  country     String    @db.VarChar(100)
+  sector      String    @db.VarChar(100)
+  contactInfo Json?
+  website     String?   @db.VarChar(500)
+  status      OrgStatus @default(PENDING)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("organizations")
+}
+
+model DiagnosticResult {
+  id        String   @id @default(uuid())
+  email     String?  @db.VarChar(255)
+  answers   Json
+  score     Int
+  reportUrl String?  @db.VarChar(500)
+  createdAt DateTime @default(now())
+
+  @@map("diagnostic_results")
+}
+
+model Testimonial {
+  id         String   @id @default(uuid())
+  name       String   @db.VarChar(150)
+  role       String?  @db.VarChar(150)
+  org        String?  @db.VarChar(150)
+  content    String   @db.Text
+  avatar     String?  @db.VarChar(500)
+  isVisible  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  @@map("testimonials")
+}
+
+model SiteStats {
+  id        String   @id @default(uuid())
+  page      String   @db.VarChar(255)
+  visits    Int      @default(0)
+  date      DateTime @default(now())
+
+  @@map("site_stats")
+}
