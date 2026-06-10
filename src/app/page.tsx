@@ -1,16 +1,26 @@
-import { SectionTitle } from '@/components/ui/SectionTitle';
+import { HeroSection } from '@/components/sections/HeroSection';
+import { StatsSection } from '@/components/sections/StatsSection';
+import { ExpertiseSection } from '@/components/sections/ExpertiseSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { NewsletterSection } from '@/components/sections/NewsletterSection';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-cream">
-      {/* Conteneur temporaire propre en attendant l'assemblage de la Semaine 2 */}
-      <section className="section flex flex-col items-center justify-center min-h-[60vh] text-center">
-        <SectionTitle 
-          title="Diane Ndeuna" 
-          subtitle="Plateforme officielle en cours de développement. Les composants de base de la Semaine 1 ont été configurés avec succès."
-          align="center"
-        />
-      </section>
+      {/* 1. Bannière d'accueil */}
+      <HeroSection />
+      
+      {/* 2. Section des Chiffres Clés */}
+      <StatsSection />
+
+      {/* 3. Section des Expertises */}
+      <ExpertiseSection />
+
+      {/* 4. Section des Témoignages */}
+      <TestimonialsSection />
+
+      {/* 5. Section de la Newsletter */}
+      <NewsletterSection />
     </main>
   );
 }
