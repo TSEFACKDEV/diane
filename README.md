@@ -15,7 +15,6 @@ cd heritage-expertise
 npm install
 cp .env.example .env      # Remplir les variables
 npx prisma generate
-npx prisma db push
 npx prisma db seed
 npm run dev
 ```

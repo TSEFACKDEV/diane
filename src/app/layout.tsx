@@ -38,12 +38,15 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.diane-ndeuna.c
 
 export const metadata: Metadata = {
   title: {
-    default: 'Diane NDEUNA — Heritage & Expertise',
+    default: 'Diane NDEUNA - Heritage & Expertise',
     template: '%s | Diane NDEUNA',
   },
   description:
     'Architecte de Systèmes Organisationnels — Structuration des organisations féminines à potentiel institutionnel en Afrique.',
-  keywords: ['leadership féminin', 'entrepreneuriat africain', 'conseil institutionnel', 'Diane NDEUNA', 'organisations africaines'],
+  keywords: ['leadership féminin', 'entrepreneuriat africain', 'conseil institutionnel', 'Diane NDEUNA', 'projet panafricain',
+    'structuration des organisations et projets', 'systeme de gouvernance', 'société civile', 'politique publique', 'financement', 
+    'positionnement institutionnel et plaidoyer', 'évaluation des projets', 'intégration regional (zlecaf)', 'francophonie','developement durable', 
+    'communication institutionnel et ia', 'genre', 'inclusion numérique et financiere', 'autonomisation economique des femmes', 'egalité femme-homme'],
   authors: [{ name: 'Diane NDEUNA' }],
   metadataBase: new URL(BASE_URL),
   alternates: {

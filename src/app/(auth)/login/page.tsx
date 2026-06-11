@@ -1,16 +1,6 @@
-'use client'
-import { useState } from 'react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { Eye, EyeOff, Lock, Mail, ArrowRight } from 'lucide-react'
-import { useAuth } from '@/hooks/useAuth'
-import { loginSchema } from '@/lib/validations'
+import React from 'react'
 
-export default function LoginPage() {
-  const { login, isLoading } = useAuth()
-  const [showPassword, setShowPassword] = useState(false)
-
+export default function Page() {
   return (
     <div style={{
       minHeight:       '100vh',
