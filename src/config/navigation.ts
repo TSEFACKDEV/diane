@@ -30,14 +30,3 @@ export const adminNav: NavItem[] = [
   { label: 'Statistiques', href: '/admin/statistiques' },
   { label: 'Paramètres',   href: '/admin/parametres' },
 ]
-
-export const footerNav = {
-  navigation: mainNav.slice(0, 6),
-  social: [
-    { label: 'LinkedIn',  href: 'https://linkedin.com', icon: 'linkedin' },
-    { label: 'Facebook',  href: 'https://facebook.com', icon: 'facebook' },
-    { label: 'Instagram', href: 'https://instagram.com', icon: 'instagram' },
-    { label: 'YouTube',   href: 'https://youtube.com',   icon: 'youtube' },
-    { label: 'TikTok',    href: 'https://tiktok.com',    icon: 'tiktok' },
-  ],
-}

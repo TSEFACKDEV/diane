@@ -34,6 +34,8 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 })
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.diane-ndeuna.com'
+
 export const metadata: Metadata = {
   title: {
     default: 'Diane NDEUNA - Heritage & Expertise',
@@ -46,11 +48,34 @@ export const metadata: Metadata = {
     'positionnement institutionnel et plaidoyer', 'évaluation des projets', 'intégration regional (zlecaf)', 'francophonie','developement durable', 
     'communication institutionnel et ia', 'genre', 'inclusion numérique et financiere', 'autonomisation economique des femmes', 'egalité femme-homme'],
   authors: [{ name: 'Diane NDEUNA' }],
+  metadataBase: new URL(BASE_URL),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    type: 'website',
-    locale: 'fr_FR',
-    url: process.env.NEXT_PUBLIC_APP_URL,
+    type:     'website',
+    locale:   'fr_FR',
+    url:      BASE_URL,
     siteName: 'Heritage & Expertise',
+    title:    'Diane NDEUNA — Heritage & Expertise',
+    description: 'Architecte de Systèmes Organisationnels — Leadership féminin africain.',
+  },
+  twitter: {
+    card:        'summary_large_image',
+    site:        '@DianeNDEUNA',
+    title:       'Diane NDEUNA — Heritage & Expertise',
+    description: 'Architecte de Systèmes Organisationnels — Leadership féminin africain.',
+  },
+  robots: {
+    index:        true,
+    follow:       true,
+    googleBot: {
+      index:                  true,
+      follow:                 true,
+      'max-image-preview':    'large',
+      'max-snippet':          -1,
+      'max-video-preview':    -1,
+    },
   },
 }
 
