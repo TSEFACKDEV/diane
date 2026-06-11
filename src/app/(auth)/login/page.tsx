@@ -253,7 +253,7 @@ export default function LoginPage() {
                     <Field
                       name="email"
                       type="email"
-                      placeholder="votre@email.com"
+                      placeholder="votre@email.com  "
                       style={{
                         ...darkInputStyle,
                         paddingLeft: '42px',
