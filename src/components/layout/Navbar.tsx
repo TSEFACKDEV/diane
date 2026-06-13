@@ -7,16 +7,9 @@ import { Menu, X, ChevronDown } from 'lucide-react'
 import { mainNav } from '@/config/navigation'
 
 export function Navbar() {
-  const [scrolled, setScrolled]     = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const pathname = usePathname()
-
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handler)
-    return () => window.removeEventListener('scroll', handler)
-  }, [])
 
   useEffect(() => {
     setMobileOpen(false)
@@ -36,12 +29,11 @@ export function Navbar() {
           top:             0,
           left:            0,
           right:           0,
-          zIndex:          50,
-          transition:      'all 0.4s ease',
-          backgroundColor: scrolled ? 'rgba(107, 45, 62, 0.97)' : 'transparent',
-          backdropFilter:  scrolled ? 'blur(12px)' : 'none',
-          borderBottom:    scrolled ? '1px solid rgba(201, 168, 76, 0.2)' : 'none',
-          boxShadow:       scrolled ? '0 4px 24px rgba(107, 45, 62, 0.3)' : 'none',
+          zIndex:          9999,
+          backgroundColor: 'rgba(107, 45, 62, 0.97)',
+          backdropFilter:  'blur(12px)',
+          borderBottom:    '1px solid rgba(201, 168, 76, 0.2)',
+          boxShadow:       '0 4px 24px rgba(107, 45, 62, 0.3)',
         }}
       >
         <nav
@@ -49,11 +41,10 @@ export function Navbar() {
             maxWidth:      '1280px',
             margin:        '0 auto',
             padding:       '0 1.5rem',
-            height:        scrolled ? '68px' : '80px',
+            height:        '68px',
             display:       'flex',
             alignItems:    'center',
             justifyContent:'space-between',
-            transition:    'height 0.4s ease',
           }}
         >
           {/* ── LOGO ─────────────────────────────────────────── */}
@@ -367,7 +358,7 @@ export function Navbar() {
       `}</style>
 
       {/* Spacer pour compenser la navbar fixed */}
-      <div style={{ height: '80px' }} />
+      <div style={{ height: '68px' }} />
     </>
   )
 }

@@ -1,9 +1,17 @@
-import React from 'react'
+import { HeroSection } from '@/components/sections/HeroSection';
+import { StatsSection } from '@/components/sections/StatsSection';
+import { ExpertiseSection } from '@/components/sections/ExpertiseSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { NewsletterSection } from '@/components/sections/NewsletterSection';
 
-const page = () => {
+export default function HomePage() {
   return (
-    <div className='bg-red-600 text-white'>page</div>
-  )
+    <>
+      <HeroSection />
+      <StatsSection />
+      <ExpertiseSection />
+      <TestimonialsSection />
+      <NewsletterSection />
+    </>
+  );
 }
-
-export default page

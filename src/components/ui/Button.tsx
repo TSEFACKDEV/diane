@@ -3,12 +3,14 @@ import React from 'react';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'gold';
   size?: 'sm' | 'md' | 'lg';
+  isLoading?: boolean;
   children: React.ReactNode;
 }
 
 export function Button({
   variant = 'primary',
   size = 'md',
+  isLoading = false,
   className = '',
   children,
   ...props
@@ -33,9 +35,10 @@ export function Button({
   return (
     <button
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+      disabled={isLoading || props.disabled}
       {...props}
     >
-      {children}
+      {isLoading ? <span className="animate-spin">⏳</span> : children}
     </button>
   );
 }
